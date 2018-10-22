@@ -350,7 +350,7 @@
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
           <p>Product Type:</p>
-          <select class="product-selector" on="change:AMP.setState({filteredProducts: "products.items.filter(a => event.value == 'all' ? true : a.type == event.value)})">
+          <select class="product-selector" on="change:AMP.setState({filteredProducts: 'products/filter?type=' + event.value})">
             <option value="all">All</option>
             <option value="bicycle">Bikes</option>
             <option value="helmet">Helmets</option>
@@ -359,7 +359,7 @@
             <option value="bottle">Water Bottles</option>
           </select>
           <p class="sort-by">Sort By:</p>
-          <select class="order-selector" on="change:AMP.setState({filteredProducts: products.items.sort((a, b) => event.value == 'asc' ? a.price - b.price : b.price - a.price)})">
+          <select class="order-selector" on="change:AMP.setState({filteredProducts: 'products/filter?price=' + event.value})">
             <option value="desc">Price: High-Low</option>
             <option value="asc">Price: Low-High</option>
           </select>
