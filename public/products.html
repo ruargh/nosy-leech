@@ -350,7 +350,7 @@
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
           <p>Product Type:</p>
-          <select class="product-selector" on="change:AMP.setState({filteredProducts: products.items.filter(a => event.value == 'all' ? true : a.type == event.value)})">
+          <select class="product-selector" on="change:AMP.setState({filteredProducts: "products.items.filter(a => event.value == 'all' ? true : a.type == event.value)})">
             <option value="all">All</option>
             <option value="bicycle">Bikes</option>
             <option value="helmet">Helmets</option>

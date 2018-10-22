@@ -32,6 +32,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/bike-details', (req, res) => {
+  const id = req.query.id;
+});
+
 app.post('/submit-form', upload.array(), (req, res) => {
   res.send(JSON.stringify(req.body));
 });
