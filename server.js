@@ -34,16 +34,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  if (req.url == '/products' || req.url == '/products.html') {
-    console.log('resetting data');
-    let products = fs.readFileSync(__dirname + '/public/json/products.json');
-    FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
-    TYPE = 'all';
-    PRICE = 'asc';
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.url == '/products' || req.url == '/products.html') {
+//     console.log('resetting data');
+//     let products = fs.readFileSync(__dirname + '/public/json/products.json');
+//     FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
+//     TYPE = 'all';
+//     PRICE = 'asc';
+//   }
+//   next();
+// });
 
 // This serves static files from the specified directory
 app.use(express.static(__dirname + '/public'));
@@ -51,9 +51,14 @@ app.use(express.static(__dirname + '/public'));
 app.get('/products/filter', (req, res) => {
   const type = req.query.type;
   const price = req.query.price;
+  if (!FILTERED_PRODUCTS.items || !PRODUCTS.items) {
+    let products = fs.readFileSync(__dirname + '/public/json/products.json');
+    FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
+  }
   if (type) {
     TYPE = type;
     const filteredItems = PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
+    console.log(filteredItems);
     const sortedFilteredItems = filteredItems.sort((a, b) => PRICE == 'asc' ? a.price - b.price : b.price - a.price);
     FILTERED_PRODUCTS.items = sortedFilteredItems;
   }
