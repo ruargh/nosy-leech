@@ -57,8 +57,9 @@ app.get('/products/filter', (req, res) => {
   }
   if (type) {
     TYPE = type;
-    const filteredItems = PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
-    console.log(filteredItems);
+    const products = fs.readFileSync(__dirname + '/public/json/products.json');
+    const productsJSON = JSON.parse(products);
+    const filteredItems = productsJSON.items.filter(item => type == 'all' ? true : item.type == type);
     const sortedFilteredItems = filteredItems.sort((a, b) => PRICE == 'asc' ? a.price - b.price : b.price - a.price);
     FILTERED_PRODUCTS.items = sortedFilteredItems;
   }
