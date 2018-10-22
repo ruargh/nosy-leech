@@ -25,8 +25,17 @@ let FILTERED_PRODUCTS = {};
 let TYPE = 'all';
 let PRICE = 'asc';
 
+
+app.use((req, res, next) => {
+  console.log('before static');
+});
+
 // This serves static files from the specified directory
 app.use(express.static(__dirname + '/public'));
+
+app.use((req, res, next) => {
+  console.log('after static');
+});
 
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
