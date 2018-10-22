@@ -21,6 +21,8 @@ const upload = multer();
 const app = express();
 
 let FILTERED_PRODUCTS = {};
+let TYPE = 'all';
+let PRICE = 'asc';
 
 // This serves static files from the specified directory
 app.use(express.static(__dirname + '/public'));
@@ -35,14 +37,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(req, res, next) => {
-  
+app.use((req, res, next) => {
+  if (req.url == '/products' || req.url == '/products.html') {
+    let products = fs.readFileSync(__dirname + '/public/json/products.json');
+    FILTERED_PRODUCTS = JSON.parse(products);
+    let TYPE = 'all';
+    let PRICE = 'asc';
+  }
   next();
-});
-
-app.get('/products', (req, res) => {
-  let products = fs.readFileSync(__dirname + '/public/json/products.json');
-  FILTERED_PRODUCTS = JSON.parse(products);
 });
 
 app.get('/products/filter', (req, res) => {
