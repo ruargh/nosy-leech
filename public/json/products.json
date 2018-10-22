@@ -5,7 +5,7 @@
       "type": "bicycle",
       "url": "/pages/cheddar-chaser.html",
       "name": "Cheddar Chaser",
-      "img": "https://storage.googleapis.com/chicos-products/cheddar-chaser.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser.jpg?1540228205366",
       "stars": "5.0",
       "price": 599
     },
@@ -14,7 +14,7 @@
       "type": "bicycle",
       "url": "/pages/ricotta-racer.html",
       "name": "Ricotta Racer",
-      "img": "https://storage.googleapis.com/chicos-products/ricotta-racer.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746",
       "stars": "5.0",
       "price": 399
     },
@@ -23,7 +23,7 @@
       "type": "bicycle",
       "url": "/pages/parmesan-pacer.html",
       "name": "Parmesan Pacer",
-      "img": "https://storage.googleapis.com/chicos-products/parmesan-pacer.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fparmesan-pacer.jpg?1540228219981",
       "stars": "4.0",
       "price": 299
     },
@@ -32,7 +32,7 @@
       "type": "helmet",
       "url": "#",
       "name": "Halloumi Helmet",
-      "img": "https://storage.googleapis.com/chicos-products/halloumi-helmet.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fhalloumi-helmet.jpg?1540228232316",
       "stars": "4.5",
       "price": 50
     },
@@ -41,7 +41,7 @@
       "type": "helmet",
       "url": "#",
       "name": "Hafod Helmet",
-      "img": "https://storage.googleapis.com/chicos-products/hafod-helmet.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fhafod-helmet.jpg?1540228233528",
       "stars": "4.0",
       "price": 40
     },
@@ -50,7 +50,7 @@
       "type": "helmet",
       "url": "#",
       "name": "Havarti Helmet",
-      "img": "https://storage.googleapis.com/chicos-products/havarti-helmet.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fhavarti-helmet.jpg?1540228234228",
       "stars": "4.5",
       "price": 30
     },
@@ -59,7 +59,7 @@
       "type": "gloves",
       "url": "#",
       "name": "Gruyere Gloves",
-      "img": "https://storage.googleapis.com/chicos-products/gruyere-gloves.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fgruyere-gloves.jpg?1540228233993",
       "stars": "3.5",
       "price": 30
     },
@@ -68,7 +68,7 @@
       "type": "basket",
       "url": "#",
       "name": "Barilotto Basket",
-      "img": "https://storage.googleapis.com/chicos-products/barilotto-basket.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fbarilotto-basket.jpg?1540228233143",
       "stars": "4.5",
       "price": 30
     },
@@ -77,7 +77,7 @@
       "type": "gloves",
       "url": "#",
       "name": "Gouda Gloves",
-      "img": "https://storage.googleapis.com/chicos-products/gouda-gloves.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fgouda-gloves.jpg?1540228232010",
       "stars": "5.0",
       "price": 25
     },
@@ -86,7 +86,7 @@
       "type": "gloves",
       "url": "#",
       "name": "Gloucester Gloves",
-      "img": "https://storage.googleapis.com/chicos-products/gloucester-gloves.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fgloucester-gloves.jpg?1540228232554",
       "stars": "4.5",
       "price": 20
     },
@@ -95,7 +95,7 @@
       "type": "bottle",
       "url": "#",
       "name": "Baladi Bottle",
-      "img": "https://storage.googleapis.com/chicos-products/baladi-bottle.jpg",
+      "img": "https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fbaladi-bottle.jpg?1540228231147",
       "stars": "4.0",
       "price": 15
     }

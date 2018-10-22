@@ -296,8 +296,8 @@
     </style>
   </head>
   <body>
-    <amp-state id="products" src="/json/products.json"></amp-state>
-    <amp-state id="filteredProducts" src="/json/products.json"></amp-state>
+    <amp-state id="products" src="/public/json/products.json"></amp-state>
+    <amp-state id="filteredProducts" src="/public/json/products.json"></amp-state>
     <header class="headerbar">
       <div role="button" on="tap:header-sidebar.toggle" tabindex="0" class="navbar-trigger">☰</div>
       <h2><a href="/index.html">Chico's Cheese Bicycles</a></h2>
@@ -365,7 +365,7 @@
           </select>
         </div>
 
-        <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="/json/products.json" [src]=filteredProducts>
+        <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="/public/json/products.json" [src]=filteredProducts>
           <template type="amp-mustache">
             <a href="{{url}}" class="product-card">
               <amp-img width="200" height="150" layout="responsive" alt="{{name}}" src="{{img}}"></amp-img>
