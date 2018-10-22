@@ -20,6 +20,7 @@ const fs = require('fs');
 const upload = multer();
 const app = express();
 
+let PRODUCTS = {};
 let FILTERED_PRODUCTS = {};
 let TYPE = 'all';
 let PRICE = 'asc';
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
   console.log('in middleware');
   if (req.url == '/products' || req.url == '/products.html') {
     let products = fs.readFileSync(__dirname + '/public/json/products.json');
-    FILTERED_PRODUCTS = JSON.parse(products);
+    FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
     TYPE = 'all';
     PRICE = 'asc';
     console.log('resetting filter');
@@ -55,12 +56,13 @@ app.get('/products/filter', (req, res) => {
   const price = req.query.price;
   if (type) {
     TYPE = type;
-    const filteredItems = FILTERED_PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
-    FILTERED_PRODUCTS.items = filteredItems;
+    const filteredItems = PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
+    const sortedFilteredItems = filteredItems.sort((a, b) => PRICE == 'asc' ? a.price - b.price : b.price - a.price);
+    FILTERED_PRODUCTS.items = sortedFilteredItems;
   }
   if (price) {
     PRICE = price;
-    const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => event.value == 'asc' ? a.price - b.price : b.price - a.price);
+    const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => price == 'asc' ? a.price - b.price : b.price - a.price);
     FILTERED_PRODUCTS.items = sortedItems;
   }
   res.send(JSON.stringify(FILTERED_PRODUCTS));
