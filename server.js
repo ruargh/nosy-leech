@@ -38,11 +38,14 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
+  console.log('in middleware');
   if (req.url == '/products' || req.url == '/products.html') {
     let products = fs.readFileSync(__dirname + '/public/json/products.json');
     FILTERED_PRODUCTS = JSON.parse(products);
-    let TYPE = 'all';
-    let PRICE = 'asc';
+    TYPE = 'all';
+    PRICE = 'asc';
+    console.log('resetting filter');
+    console.log(FILTERED_PRODUCTS);
   }
   next();
 });
@@ -51,10 +54,12 @@ app.get('/products/filter', (req, res) => {
   const type = req.query.type;
   const price = req.query.price;
   if (type) {
+    TYPE = type;
     const filteredItems = FILTERED_PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
     FILTERED_PRODUCTS.items = filteredItems;
   }
   if (price) {
+    PRICE = price;
     const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => event.value == 'asc' ? a.price - b.price : b.price - a.price);
     FILTERED_PRODUCTS.items = sortedItems;
   }
