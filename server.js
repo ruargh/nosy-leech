@@ -15,9 +15,12 @@ limitations under the License.
 */
 const express = require('express');
 const multer = require('multer');
+const fs = require('fs');
 
 const upload = multer();
 const app = express();
+
+let FILTERED_PRODUCTS = {};
 
 // This serves static files from the specified directory
 app.use(express.static(__dirname + '/public'));
@@ -32,8 +35,22 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/bike-details', (req, res) => {
-  const id = req.query.id;
+app.get('products/filter', (req, res) => {
+  const type = req.query.type;
+  const price = req.query.price;
+  if (!FILTERED_PRODUCTS) {
+    let products = fs.readFileSync('/json/products.json');
+    FILTERED_PRODUCTS = JSON.parse(products);
+  }
+  if (type) {
+    const filteredItems = FILTERED_PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
+    FILTERED_PRODUCTS.items = filteredItems;
+  }
+  if (price) {
+    const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => event.value == 'asc' ? a.price - b.price : b.price - a.price);
+    FILTERED_PRODUCTS.items = sortedItems;
+  }
+  res.send(JSON.stringify(FILTERED_PRODUCTS));
 });
 
 app.post('/submit-form', upload.array(), (req, res) => {
