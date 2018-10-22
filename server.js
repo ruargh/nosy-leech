@@ -35,14 +35,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('products/filter', (req, res) => {
-  conso
+app.get('/products/filter', (req, res) => {
   const type = req.query.type;
   const price = req.query.price;
-  if (!FILTERED_PRODUCTS) {
-    let products = fs.readFileSync('/json/products.json');
+  if (!FILTERED_PRODUCTS.items) {
+    let products = fs.readFileSync(__dirname + '/public/json/products.json');
     FILTERED_PRODUCTS = JSON.parse(products);
   }
+  console.log(FILTERED_PRODUCTS);
   if (type) {
     const filteredItems = FILTERED_PRODUCTS.items.filter(item => type == 'all' ? true : item.type == type);
     FILTERED_PRODUCTS.items = filteredItems;
