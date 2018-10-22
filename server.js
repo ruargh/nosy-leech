@@ -36,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.get('products/filter', (req, res) => {
+  conso
   const type = req.query.type;
   const price = req.query.price;
   if (!FILTERED_PRODUCTS) {
