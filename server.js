@@ -35,11 +35,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/products.html', (req, res) => {
+app.use(req, res, next) => {
+  
+  next();
+});
+
+app.get('/products', (req, res) => {
   let products = fs.readFileSync(__dirname + '/public/json/products.json');
   FILTERED_PRODUCTS = JSON.parse(products);
-  console.log('products page');
-  console.log(FILTERED_PRODUCTS);
 });
 
 app.get('/products/filter', (req, res) => {
