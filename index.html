@@ -371,7 +371,7 @@
     <main>
       <div class="main-content">
         <amp-image-lightbox id="ricotta-racer-lightbox" layout="nodisplay"></amp-image-lightbox>
-        <amp-img on="tap:ricotta-racer-lightbox" role="button" tabindex="0" src="images/ricotta-racer.jpg" layout="responsive" width="640" height="480"></amp-img>
+        <amp-img on="tap:ricotta-racer-lightbox" role="button" tabindex="0" src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746" layout="responsive" width="640" height="480"></amp-img>
 
         <div class="below-hero">
           <h2 class="main-heading">What we're about</h2>
@@ -381,8 +381,8 @@
             new rodent-repelling varnish they last longer than ever!</p>
 
           <amp-carousel [slide]="carousel.selectedSlide" on="slideChange:AMP.setState({carousel: {'selectedSlide':event.index}})" lightbox id="imageSlides" layout="responsive" width="412" height="309" type="slides" loop>
-            <amp-img src="images/cheddar-chaser.jpg" width="412" height="309" layout="responsive"></amp-img>
-            <amp-img src="images/cheese.jpg" width="412" height="309" layout="responsive"></amp-img>
+            <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser.jpg?1540228205366" width="412" height="309" layout="responsive"></amp-img>
+            <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheese.jpg?1540228223785" width="412" height="309" layout="responsive"></amp-img>
             <amp-img src="images/mouse.jpg" width="412" height="309" layout="responsive"></amp-img>
           </amp-carousel>
           <amp-selector id="ampSelector" [selected]="carousel.selectedSlide" on="select:AMP.setState({carousel: {'selectedSlide':event.targetOption}})">
