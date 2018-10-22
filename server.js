@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.url == '/products' || req.url == '/products.html') {
-    console.log('resetting data');
+    console.log(req.url);
 //     let products = fs.readFileSync(__dirname + '/public/json/products.json');
 //     FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
 //     TYPE = 'all';
