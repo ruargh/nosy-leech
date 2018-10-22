@@ -65,6 +65,7 @@ app.get('/products/filter', (req, res) => {
     const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => price == 'asc' ? a.price - b.price : b.price - a.price);
     FILTERED_PRODUCTS.items = sortedItems;
   }
+  console.log(JSON.stringify(FILTERED_PRODUCTS));
   res.send(JSON.stringify(FILTERED_PRODUCTS));
 });
 
