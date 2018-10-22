@@ -25,40 +25,28 @@ let FILTERED_PRODUCTS = {};
 let TYPE = 'all';
 let PRICE = 'asc';
 
-
-app.use((req, res, next) => {
-  console.log('before static');
-});
-
-// This serves static files from the specified directory
-app.use(express.static(__dirname + '/public'));
-
-app.use((req, res, next) => {
-  console.log('after static');
-});
-
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
   res.append('AMP-Access-Control-Allow-Source-Origin', 'https://seemly-metal.glitch.me');
   res.append('Access-Control-Expose-Headers', ['AMP-Access-Control-Allow-Source-Origin']);
-  res.append('Content-Type', 'application/json');
   next();
 });
 
 app.use((req, res, next) => {
-  console.log('in middleware');
   if (req.url == '/products' || req.url == '/products.html') {
+    console.log('resetting data');
     let products = fs.readFileSync(__dirname + '/public/json/products.json');
     FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
     TYPE = 'all';
     PRICE = 'asc';
-    console.log('resetting filter');
-    console.log(FILTERED_PRODUCTS);
   }
   next();
 });
+
+// This serves static files from the specified directory
+app.use(express.static(__dirname + '/public'));
 
 app.get('/products/filter', (req, res) => {
   const type = req.query.type;
@@ -70,15 +58,17 @@ app.get('/products/filter', (req, res) => {
     FILTERED_PRODUCTS.items = sortedFilteredItems;
   }
   if (price) {
+    console.log('sorting items');
     PRICE = price;
     const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => price == 'asc' ? a.price - b.price : b.price - a.price);
     FILTERED_PRODUCTS.items = sortedItems;
   }
-  console.log(JSON.stringify(FILTERED_PRODUCTS));
+  res.append('Content-Type', 'application/json');
   res.send(JSON.stringify(FILTERED_PRODUCTS));
 });
 
 app.post('/submit-form', upload.array(), (req, res) => {
+  res.append('Content-Type', 'application/json');
   res.send(JSON.stringify(req.body));
 });
 
