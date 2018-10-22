@@ -1,22 +1,44 @@
-// server.js
-// where your node app starts
+/*
+Copyright 2018 Google Inc.
 
-// init project
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 const express = require('express');
+const multer = require('multer');
+
+const upload = multer();
 const app = express();
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+// This serves static files from the specified directory
+app.use(express.static(__dirname));
 
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
-
-// http://expressjs.com/en/starter/basic-routing.html
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['*']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  res.append('AMP-Access-Control-Allow-Source-Origin', 'https://seemly-metal.glitch.me');
+  res.append('Access-Control-Expose-Headers', ['AMP-Access-Control-Allow-Source-Origin']);
+  res.append('Content-Type', 'application/json');
+  next();
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + listener.address().port);
+app.post('/submit-form', upload.array(), (req, res) => {
+  res.send(JSON.stringify(req.body));
+});
+
+const server = app.listen(8081, '127.0.0.1', () => {
+  const host = server.address().address;
+  const port = server.address().port;
+
+  console.log('App listening at http://%s:%s', host, port);
 });
