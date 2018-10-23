@@ -350,20 +350,20 @@
       <div class="main-content">
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
-          <amp-selector multiple layout="container">
+          <amp-selector multiple layout="container" name="filterSelector">
             <p>Product Type:</p>
-            <select class="product-selector" on="change:AMP.setState({filteredProducts: '/products/filter?type=' + event.value})">
-              <option o="all">All</option>
-              <option o="bicycle">Bikes</option>
-              <option o="helmet">Helmets</option>
-              <option o="gloves">Gloves</option>
-              <option o="basket">Baskets</option>
-              <option o="bottle">Water Bottles</option>
+            <select class="product-selector" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})">
+              <option option="all" selected>All</option>
+              <option option="bicycle">Bikes</option>
+              <option option="helmet">Helmets</option>
+              <option option="gloves">Gloves</option>
+              <option option="basket">Baskets</option>
+              <option option="bottle">Water Bottles</option>
             </select>
             <p class="sort-by">Sort By:</p>
-            <select class="order-selector" on="change:AMP.setState({filteredProducts: '/products/filter?price=' + event.o})">
-              <option o="desc">Price: High-Low</option>
-              <option value="asc">Price: Low-High</option>
+            <select class="order-selector" on="select:AMP.setState({filteredProducts: '/products/filter?price=' + event.selectedOptions})">
+              <option option="desc" selected>Price: High-Low</option>
+              <option option="asc">Price: Low-High</option>
             </select>
           </amp-selector>
         </div>
