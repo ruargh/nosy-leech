@@ -52,6 +52,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/products/filter', (req, res) => {
   // const type = req.query.type;
   // const price = req.query.price;
+  console.log(req.url);
   console.log(req.query);
   // if (!FILTERED_PRODUCTS.items || !PRODUCTS.items) {
   //   let products = fs.readFileSync(__dirname + '/public/json/products.json');

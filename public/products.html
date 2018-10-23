@@ -350,7 +350,7 @@
       <div class="main-content">
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
-          <amp-selector multiple layout="container" name="/products/filter" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})">
+          <amp-selector multiple layout="container" name="productsFilter" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})">
             <p>Product Type:</p>
             <select class="product-selector">
               <option option="all" selected>All</option>
