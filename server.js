@@ -20,11 +20,6 @@ const fs = require('fs');
 const upload = multer();
 const app = express();
 
-let PRODUCTS = {};
-let FILTERED_PRODUCTS = {};
-let TYPE = 'all';
-let PRICE = 'asc';
-
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -34,52 +29,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  if (req.url == '/products' || req.url == '/products.html') {
-    // console.log(req.url);
-    // console.log(req.headers);
-//     let products = fs.readFileSync(__dirname + '/public/json/products.json');
-//     FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
-//     TYPE = 'all';
-//     PRICE = 'asc';
-  }
-  next();
-});
-
 // This serves static files from the specified directory
 app.use(express.static(__dirname + '/public'));
 
 app.get('/products/filter', (req, res) => {
-  console.log(req.query);
-  const type = req.query.filterType;
+  const filterType = req.query.filterType;
   const sortValue = req.query.sortValue;
   const products = fs.readFileSync(__dirname + '/public/json/products.json');
   const productsJSON = JSON.parse(products);
-  const filteredItems = productsJSON.items.filter(item => type == 'all' ? true : item.type == type);
-  const sortedFilteredItems = filteredItems.sort((a, b) => price == 'asc' ? a.price - b.price : b.price - a.price);
-  
-  // if (!FILTERED_PRODUCTS.items || !PRODUCTS.items) {
-  //   let products = fs.readFileSync(__dirname + '/public/json/products.json');
-  //   FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);
-  // }
-  // if (type) {
-  //   console.log('filtering');
-  //   TYPE = type;
-  //   const products = fs.readFileSync(__dirname + '/public/json/products.json');
-  //   const productsJSON = JSON.parse(products);
-  //   const filteredItems = productsJSON.items.filter(item => type == 'all' ? true : item.type == type);
-  //   const sortedFilteredItems = filteredItems.sort((a, b) => PRICE == 'asc' ? a.price - b.price : b.price - a.price);
-  //   FILTERED_PRODUCTS.items = sortedFilteredItems;
-  // }
-  // if (price) {
-  //   console.log('sorting');
-  //   PRICE = price;
-  //   const sortedItems = FILTERED_PRODUCTS.items.sort((a, b) => price == 'asc' ? a.price - b.price : b.price - a.price);
-  //   FILTERED_PRODUCTS.items = sortedItems;
-  // }
-  // res.append('Content-Type', 'application/json');
-  // console.log('sending response');
-  // res.send(JSON.stringify(FILTERED_PRODUCTS));
+  const filteredItems = productsJSON.items.filter(item => filterType == 'all' ? true : item.type == filterType);
+  const sortedFilteredItems = filteredItems.sort((a, b) => sortValue == 'price-asc' ? a.price - b.price : b.price - a.price);
+  const filteredProducts = { "items": sortedFilteredItems }
+  res.send(JSON.stringify(filteredProducts));
 });
 
 app.post('/submit-form', upload.array(), (req, res) => {
