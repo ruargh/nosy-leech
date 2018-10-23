@@ -31,6 +31,7 @@
     <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
     <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
 
     <style amp-custom>
       body {
@@ -349,20 +350,22 @@
       <div class="main-content">
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
-          <p>Product Type:</p>
-          <select class="product-selector" on="change:AMP.setState({filteredProducts: '/products/filter?type=' + event.value})">
-            <option value="all">All</option>
-            <option value="bicycle">Bikes</option>
-            <option value="helmet">Helmets</option>
-            <option value="gloves">Gloves</option>
-            <option value="basket">Baskets</option>
-            <option value="bottle">Water Bottles</option>
-          </select>
-          <p class="sort-by">Sort By:</p>
-          <select class="order-selector" on="change:AMP.setState({filteredProducts: '/products/filter?price=' + event.value})">
-            <option value="desc">Price: High-Low</option>
-            <option value="asc">Price: Low-High</option>
-          </select>
+          <amp-selector multiple layout="container">
+            <p>Product Type:</p>
+            <select class="product-selector" on="change:AMP.setState({filteredProducts: '/products/filter?type=' + event.value})">
+              <option o="all">All</option>
+              <option o="bicycle">Bikes</option>
+              <option o="helmet">Helmets</option>
+              <option o="gloves">Gloves</option>
+              <option o="basket">Baskets</option>
+              <option o="bottle">Water Bottles</option>
+            </select>
+            <p class="sort-by">Sort By:</p>
+            <select class="order-selector" on="change:AMP.setState({filteredProducts: '/products/filter?price=' + event.o})">
+              <option o="desc">Price: High-Low</option>
+              <option value="asc">Price: Low-High</option>
+            </select>
+          </amp-selector>
         </div>
 
         <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="/json/products.json" [src]=filteredProducts>
