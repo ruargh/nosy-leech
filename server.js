@@ -50,10 +50,14 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + '/public'));
 
 app.get('/products/filter', (req, res) => {
-  // const type = req.query.type;
-  // const price = req.query.price;
-  console.log(req.url);
   console.log(req.query);
+  const type = req.query.filterType;
+  const sortValue = req.query.sortValue;
+  const products = fs.readFileSync(__dirname + '/public/json/products.json');
+  const productsJSON = JSON.parse(products);
+  const filteredItems = productsJSON.items.filter(item => type == 'all' ? true : item.type == type);
+  const sortedFilteredItems = filteredItems.sort((a, b) => price == 'asc' ? a.price - b.price : b.price - a.price);
+  
   // if (!FILTERED_PRODUCTS.items || !PRODUCTS.items) {
   //   let products = fs.readFileSync(__dirname + '/public/json/products.json');
   //   FILTERED_PRODUCTS = PRODUCTS = JSON.parse(products);

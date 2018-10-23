@@ -363,7 +363,7 @@
             <select class="product-selector" on="change:AMP.setState({
               products: {
                 filterType: event.value,
-                listSrc: '/samples_templates/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'yellow' : '') +'&_=RANDOM'
+                listSrc: '/products/filter?sortValue=' + products.sortValue + '&filterType=' + event.value
               }})">
               <option value="all">All</option>
               <option value="bicycle">Bikes</option>
@@ -373,14 +373,18 @@
               <option value="bottle">Water Bottles</option>
             </select>
             <p class="sort-by">Sort By:</p>
-            <select class="order-selector" on="change:AMP.setState({filteredProducts: 'products/filter?price=' + event.value})">
-              <option value="price-desc" selected>Price: High-Low</option>
+            <select class="order-selector" on="change:AMP.setState({
+              products: {
+                sortValue: event.value,
+                listSrc: '/products/filter?sortValue=' + event.value + '&filterType=' + products.filterType
+              }})">
+              <option value="price-desc">Price: High-Low</option>
               <option value="price-asc">Price: Low-High</option>
             </select>
 <!--           </amp-selector> -->
         </div>
 
-        <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="/json/products.json" [src]=filteredProducts>
+        <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="products/filter?sortValue=price-desc&filterType=all" [src]=products.listSrc>
           <template type="amp-mustache">
             <a href="{{url}}" class="product-card">
               <amp-img width="200" height="150" layout="responsive" alt="{{name}}" src="{{img}}"></amp-img>
