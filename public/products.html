@@ -350,9 +350,9 @@
       <div class="main-content">
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
-          <amp-selector multiple layout="container" name="filterSelector">
+          <amp-selector multiple layout="container" name="/products/filter" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})">
             <p>Product Type:</p>
-            <select class="product-selector" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})">
+            <select class="product-selector">
               <option option="all" selected>All</option>
               <option option="bicycle">Bikes</option>
               <option option="helmet">Helmets</option>
@@ -361,7 +361,7 @@
               <option option="bottle">Water Bottles</option>
             </select>
             <p class="sort-by">Sort By:</p>
-            <select class="order-selector" on="select:AMP.setState({filteredProducts: '/products/filter?price=' + event.selectedOptions})">
+            <select class="order-selector">
               <option option="desc" selected>Price: High-Low</option>
               <option option="asc">Price: Low-High</option>
             </select>
