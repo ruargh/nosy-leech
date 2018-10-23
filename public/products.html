@@ -300,10 +300,9 @@
     <amp-state id="products">
       <script type="application/json">
         {
-          "sortChoiceValue": "price-descendent",
-          "searchProduct": "",
-          "searchColor": "all",
-          "listSrc": "/samples_templates/products?sortChoiceValue=price-descendent&searchColor=all&_=RANDOM"
+          "sortValue": "price-desc",
+          "filterType": "all",
+          "listSrc": "/products/filter?sortValue=price-desc&filterType=all"
         }
       </script>
     </amp-state>
@@ -361,18 +360,22 @@
         <div class="filter-sort-selectors">
 <!--           <amp-selector multiple layout="container" name="productsFilter" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})"> -->
             <p>Product Type:</p>
-            <select class="product-selector" on="change:AMP.setState({filteredProducts: 'products/filter?type=' + event.value})">
-              <option option="all" selected>All</option>
-              <option option="bicycle">Bikes</option>
-              <option option="helmet">Helmets</option>
-              <option option="gloves">Gloves</option>
-              <option option="basket">Baskets</option>
-              <option option="bottle">Water Bottles</option>
+            <select class="product-selector" on="change:AMP.setState({
+              products: {
+                filterType: event.value,
+                listSrc: '/samples_templates/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'yellow' : '') +'&_=RANDOM'
+              }})">
+              <option value="all">All</option>
+              <option value="bicycle">Bikes</option>
+              <option value="helmet">Helmets</option>
+              <option value="gloves">Gloves</option>
+              <option value="basket">Baskets</option>
+              <option value="bottle">Water Bottles</option>
             </select>
             <p class="sort-by">Sort By:</p>
             <select class="order-selector" on="change:AMP.setState({filteredProducts: 'products/filter?price=' + event.value})">
-              <option option="desc" selected>Price: High-Low</option>
-              <option option="asc">Price: Low-High</option>
+              <option value="price-desc" selected>Price: High-Low</option>
+              <option value="price-asc">Price: Low-High</option>
             </select>
 <!--           </amp-selector> -->
         </div>
