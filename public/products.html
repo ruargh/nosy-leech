@@ -359,9 +359,9 @@
       <div class="main-content">
         <h2 class="main-heading">Our Products</h2>
         <div class="filter-sort-selectors">
-          <amp-selector multiple layout="container" name="productsFilter" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})">
+<!--           <amp-selector multiple layout="container" name="productsFilter" on="select:AMP.setState({filteredProducts: '/products/filter?type=' + event.selectedOptions})"> -->
             <p>Product Type:</p>
-            <select class="product-selector">
+            <select class="product-selector" on="change:AMP.setState({filteredProducts: 'products/filter?type=' + event.value})">
               <option option="all" selected>All</option>
               <option option="bicycle">Bikes</option>
               <option option="helmet">Helmets</option>
@@ -370,11 +370,11 @@
               <option option="bottle">Water Bottles</option>
             </select>
             <p class="sort-by">Sort By:</p>
-            <select class="order-selector">
+            <select class="order-selector" on="change:AMP.setState({filteredProducts: 'products/filter?price=' + event.value})">
               <option option="desc" selected>Price: High-Low</option>
               <option option="asc">Price: Low-High</option>
             </select>
-          </amp-selector>
+<!--           </amp-selector> -->
         </div>
 
         <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="/json/products.json" [src]=filteredProducts>
