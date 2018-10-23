@@ -297,7 +297,16 @@
     </style>
   </head>
   <body>
-    <amp-state id="products" src="/json/products.json"></amp-state>
+    <amp-state id="products">
+      <script type="application/json">
+        {
+          "sortChoiceValue": "price-descendent",
+          "searchProduct": "",
+          "searchColor": "all",
+          "listSrc": "/samples_templates/products?sortChoiceValue=price-descendent&searchColor=all&_=RANDOM"
+        }
+      </script>
+    </amp-state>
     <amp-state id="filteredProducts" src="/json/products.json"></amp-state>
     <header class="headerbar">
       <div role="button" on="tap:header-sidebar.toggle" tabindex="0" class="navbar-trigger">☰</div>
