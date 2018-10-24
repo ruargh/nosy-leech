@@ -177,6 +177,17 @@
         flex-flow: row;
         align-items: center;
       }
+      
+      @media (max-width: 460px) {
+        .filter-sort-selectors {
+          display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+        }
+        .sort-by {
+          margin-left: 10px;
+        }
+      }
 
       .product-selector {
         margin-left: 10px;
