@@ -399,9 +399,9 @@
           </select>
         </div>
 
-        <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="products/filter?sortValue=price-desc&filterType=all" [src]=products.listSrc>
+        <amp-list id="amp-list-bikes" width="auto" height="600" layout="fixed-height" src="products/filter?sortValue=price-desc&filterType=all" [src]="products.listSrc">
           <template type="amp-mustache">
-            <a href="{{url}}" class="product-card">
+            <div class="product-card">
               <amp-img width="200" height="150" layout="responsive" alt="{{name}}" src="{{img}}"></amp-img>
               <div class="product-details">
                 <p class="product-name">{{name}}</p>
@@ -411,7 +411,7 @@
                 </div>
                 <p class="product-price" data-price="{{price}}">${{price}}</p>
               </div>
-            </a>
+            </div>
           </template>
         </amp-list>
       </div>
