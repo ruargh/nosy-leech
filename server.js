@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
-  res.append('AMP-Access-Control-Allow-Source-Origin', 'https://woozy-vision.glitch.me');
+  res.append('AMP-Access-Control-Allow-Source-Origin', process.env.URL);
   res.append('Access-Control-Expose-Headers', ['AMP-Access-Control-Allow-Source-Origin']);
   next();
 });
