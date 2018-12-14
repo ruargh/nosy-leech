@@ -1,4 +1,4 @@
-## Accelerated Mobile Pages Beginner Course
+## Accelerated Mobile Pages Beginner Course Step 1
 
 This repo contains the starting point of the AMP Beginner Course. It's just a simple HTML page with no styles at all, and no AMP tags/links/scripts. 
 
@@ -19,11 +19,19 @@ If you have a Glitch account, all the remixed projects will be saved into your a
 
 ### Important task: Add your Glitch URL to the environment valiable
 
-It is important to update the environment variable with your own Glitch project's URL. This will make
-sure that our server knows where to serve our pages from and avoid any CORS issues. If you don't know anything about CORS, don't worry. Just make sure you add your URL there.
+It is important to update the environment variable with your own Glitch project's URL. 
+
+_This will make sure that our server knows where to serve our pages from and avoid any CORS issues. If you don't know anything about CORS, don't worry. Just make sure you add your URL there._
 
 * Open the `.env` file from the side menu.
-* 
+
+* Add your Glitch's live URL on line 5, without the trailing slash, in quotation marks. 
+If your current URL is `https://glitch.com/edit/#!/your-glitch`, then the result should look like this:
+
+  **line 5 of `.env` file:**
+  ```
+  URL="https://your-glitch.glitch.me"
+  ```
 
 ## Note
 
