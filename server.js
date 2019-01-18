@@ -33,8 +33,8 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + '/public'));
 
 app.get('/products/filter', (req, res) => {
-  const filterType = req.query.filterType || 'all';
-  const sortValue = req.query.sortValue || 'price-desc';
+  const filterType = req.query.category || 'all';
+  const sortValue = req.query.sort || 'price-desc';
   const itemId = req.query.itemId || 'all';
   const products = fs.readFileSync(__dirname + '/public/json/products.json');
   const productsJSON = JSON.parse(products);
