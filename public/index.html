@@ -28,6 +28,9 @@
     <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
     <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+    <script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
+    <script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>
     <title>Chico's Cheese Bicycles</title>
     <link
       rel="shortcut icon"
@@ -578,9 +581,8 @@
     </amp-sidebar>
     <main>
       <div class="main-content">
-        <amp-img width="640" height="480" layout="responsive"
-          src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746"></amp-img>
-
+        <amp-image-lightbox id="ricotta-racer-lightbox" layout="nodisplay"></amp-image-lightbox>
+        <amp-img on="tap:ricotta-racer-lightbox" role="button" tabindex="0" src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fricotta-racer.jpg?1540228217746" layout="responsive" width="640" height="480"></amp-img>
         <div class="below-hero">
           <h2 class="main-heading">What we're about</h2>
           <p class="main-text">
@@ -589,14 +591,28 @@
             hungry. Our bikes are 100% biodegradable. And with our new
             rodent-repelling varnish they last longer than ever!
           </p>
-          <amp-carousel layout="responsive" width="412" height="309" type="slides" loop >
-            <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser.jpg?1540228205366"
-                     width="412" height="309" layout="responsive"></amp-img>
-            <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheese.jpg?1540228223785"
-                     width="412" height="309" layout="responsive"></amp-img>
-            <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fmouse.jpg?1540228223963"
-                     width="412" height="309" layout="responsive"></amp-img>
-        </amp-carousel>
+          <amp-carousel on="slideChange:ampSelector.toggle(index=event.index)"
+          layout="responsive" width="412" height="309" type="slides" loop id="carousel" lightbox>
+          <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser.jpg?1540228205366"
+              width="412" height="309" layout="responsive"></amp-img>
+          <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheese.jpg?1540228223785"
+              width="412" height="309" layout="responsive"></amp-img>
+          <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fmouse.jpg?1540228223963"
+              width="412" height="309" layout="responsive"></amp-img>
+      </amp-carousel>
+      <amp-selector layout="container" name="single_image_select" id="ampSelector">
+          <amp-carousel class="thumbnail-carousel" layout="fixed-height" width="auto" height="78">
+              <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheddar-chaser-thumb.jpg?1540228250623"
+                  option="0" selected on="tap:carousel.goToSlide(index=0)" tabindex="1" role="button"
+                  width="96" height="72" layout="fixed"></amp-img>
+              <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fcheese-thumb.jpg?1540228249992"
+                  option="1" on="tap:carousel.goToSlide(index=1)" tabindex="1" role="button"
+                  width="96" height="72" layout="fixed"></amp-img>
+              <amp-img src="https://cdn.glitch.com/d7f46a57-0ca4-4cca-ab0f-69068dec6631%2Fmouse-thumb.jpg?1540228249062"
+                  option="2" on="tap:carousel.goToSlide(index=2)" tabindex="1" role="button"
+                  width="96" height="72" layout="fixed"></amp-img>
+          </amp-carousel>
+      </amp-selector>
         <amp-youtube
         data-videoid="BlpMQ7fMCzA"
         layout="responsive"
@@ -615,6 +631,20 @@
                       <label for="form-email">Email:</label>
                   </div>
                   <input type="submit" value="Subscribe" class="btn">
+                  <div submit-success>
+                      <template type="amp-mustache">
+                          <p class="form-submit-response">
+                              Success! Thanks {{name}} for subscribing!
+                          </p>
+                      </template>
+                  </div>
+                  <div submit-error>
+                      <template type="amp-mustache">
+                          <p class="form-submit-response">
+                              Oops! Sorry, there was an error.
+                          </p>
+                      </template>
+                  </div>
               </form>
           </div>
       </div>
