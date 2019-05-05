@@ -16,6 +16,7 @@ limitations under the License.
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
+var https = require('https')
 
 const upload = multer();
 const app = express();
@@ -24,7 +25,8 @@ app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
-  res.append('AMP-Access-Control-Allow-Source-Origin', process.env.URL);
+  //res.append('AMP-Access-Control-Allow-Source-Origin', process.env.URL);
+  res.append('AMP-Access-Control-Allow-Source-Origin', 'https://localhost:8081');
   res.append('Access-Control-Expose-Headers', ['AMP-Access-Control-Allow-Source-Origin']);
   next();
 });
@@ -52,9 +54,15 @@ app.post('/submit-form', upload.array(), (req, res) => {
   res.send(JSON.stringify(req.body));
 });
 
-const server = app.listen(8081, '127.0.0.1', () => {
-  const host = server.address().address;
-  const port = server.address().port;
+// const server = app.listen(443, '127.0.0.1', () => {
+//   const host = server.address().address;
+//   const port = server.address().port;
 
-  console.log('App listening at http://%s:%s', host, port);
-});
+//   console.log('App listening at http://%s:%s', host, port);
+// });
+https.createServer({
+  key: fs.readFileSync(__dirname + '/cert/server.key'),
+  cert: fs.readFileSync(__dirname + '/cert/server.crt')
+}, app).listen(8081, () => {
+  console.log('Listening... port 8081')
+})
